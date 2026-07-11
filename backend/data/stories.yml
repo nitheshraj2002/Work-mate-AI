@@ -1,0 +1,93 @@
+version: "3.1"
+
+stories:
+
+# Multi-turn conversations only
+# Single-turn flows are handled by rules.yml
+
+- story: greet then ask info
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: ask_salary
+    - action: action_person_query
+
+- story: greet then list
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: list_employees
+    - action: action_smart_employee_query
+
+- story: ask info then thank
+  steps:
+    - intent: ask_phone
+    - action: action_person_query
+    - intent: thank
+    - action: utter_thank
+
+- story: ask info then goodbye 
+  steps:
+    - intent: ask_department
+    - action: action_person_query
+    - intent: goodbye
+    - action: utter_goodbye
+
+- story: check leave then attendance
+  steps:
+    - intent: ask_leave_status
+    - action: action_leave_status
+    - intent: ask_attendance
+    - action: action_attendance
+
+- story: check tasks then update
+  steps:
+    - intent: ask_tasks
+    - action: action_tasks
+    - intent: update_task
+    - action: action_update_task
+
+- story: fallback then retry
+  steps:
+    - intent: nlu_fallback
+    - action: action_default_fallback
+    - intent: ask_tasks
+    - action: action_tasks
+
+- story: check projects then announcements
+  steps:
+    - intent: ask_projects
+    - action: action_projects
+    - intent: ask_announcements
+    - action: action_announcements
+
+- story: ask multiple employee details
+  steps:
+    - intent: ask_skills
+    - action: action_person_query
+    - intent: ask_experience
+    - action: action_person_query
+    - intent: thank
+    - action: utter_thank
+
+# ← NEW: assign task then check tasks
+- story: assign task then view tasks
+  steps:
+    - intent: assign_task
+    - action: assign_task_form
+    - active_loop: assign_task_form
+    - active_loop: null
+    - action: action_assign_task
+    - intent: ask_tasks
+    - action: action_tasks
+
+# ← NEW: greet then assign task
+- story: greet then assign task
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: assign_task
+    - action: assign_task_form
+    - active_loop: assign_task_form
+    - active_loop: null
+    - action: action_assign_task

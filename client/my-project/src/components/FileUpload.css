@@ -1,0 +1,368 @@
+/* src/components/FileUpload.css */
+
+/* ── Root ──────────────────────────────────────────────────── */
+.fu-root {
+  width: 100%;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+/* ── Theme variables ───────────────────────────────────────── */
+.fu-dark {
+  --fu-bg:          rgba(20, 20, 35, 0.88);
+  --fu-border:      rgba(108, 99, 255, 0.35);
+  --fu-border-hov:  rgba(108, 99, 255, 0.75);
+  --fu-accent:      #6c63ff;
+  --fu-accent2:     #00e9b2;
+  --fu-text:        #ddd;
+  --fu-sub:         rgba(255,255,255,0.45);
+  --fu-row-bg:      rgba(255,255,255,0.05);
+  --fu-row-hov:     rgba(108,99,255,0.12);
+  --fu-err:         #ff7eb3;
+  --fu-send-bg:     linear-gradient(135deg, #6c63ff 0%, #00e9b2 100%);
+  --fu-send-text:   #fff;
+  --fu-shadow:      0 8px 32px rgba(0,0,0,0.45);
+  --fu-input-bg:    rgba(255,255,255,0.06);
+  --fu-input-text:  #ddd;
+  --fu-dot:         #6c63ff;
+}
+
+.fu-light {
+  --fu-bg:          rgba(255, 255, 255, 0.93);
+  --fu-border:      rgba(108, 99, 255, 0.25);
+  --fu-border-hov:  rgba(108, 99, 255, 0.6);
+  --fu-accent:      #6c63ff;
+  --fu-accent2:     #0f7a5a;
+  --fu-text:        #222;
+  --fu-sub:         rgba(0,0,0,0.45);
+  --fu-row-bg:      rgba(0,0,0,0.04);
+  --fu-row-hov:     rgba(108,99,255,0.08);
+  --fu-err:         #c0392b;
+  --fu-send-bg:     linear-gradient(135deg, #6c63ff 0%, #00c48c 100%);
+  --fu-send-text:   #fff;
+  --fu-shadow:      0 8px 32px rgba(0,0,0,0.12);
+  --fu-input-bg:    rgba(0,0,0,0.05);
+  --fu-input-text:  #222;
+  --fu-dot:         #6c63ff;
+}
+
+/* ── Loading bar ───────────────────────────────────────────── */
+.fu-loading-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  background: var(--fu-bg);
+  border: 1.5px solid var(--fu-border);
+  border-radius: 12px;
+  backdrop-filter: blur(12px);
+}
+
+.fu-loading-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--fu-dot);
+  animation: fu-bounce 0.8s ease-in-out infinite;
+}
+
+@keyframes fu-bounce {
+  0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+  40%           { transform: scale(1.0); opacity: 1;   }
+}
+
+.fu-loading-text {
+  font-size: 12px;
+  color: var(--fu-sub);
+  margin-left: 4px;
+}
+
+/* ── Drop zone ─────────────────────────────────────────────── */
+.fu-dropzone {
+  background: var(--fu-bg);
+  border: 2px dashed var(--fu-border);
+  border-radius: 14px;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s, transform 0.15s;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  user-select: none;
+}
+
+.fu-dropzone:hover,
+.fu-dropzone:focus {
+  border-color: var(--fu-border-hov);
+  outline: none;
+}
+
+.fu-dropzone:hover .fu-dz-icon {
+  transform: translateY(-3px) scale(1.1);
+}
+
+.fu-drag-over {
+  border-color: var(--fu-accent2) !important;
+  background:   rgba(0, 233, 178, 0.07) !important;
+  transform:    scale(1.01);
+}
+
+.fu-dz-inner {
+  display:        flex;
+  flex-direction: column;
+  align-items:    center;
+  justify-content:center;
+  padding:        28px 20px;
+  gap:            6px;
+}
+
+.fu-dz-icon {
+  color:      var(--fu-accent);
+  opacity:    0.8;
+  transition: transform 0.25s ease;
+  margin-bottom: 4px;
+}
+
+.fu-dz-title {
+  margin:      0;
+  font-size:   14px;
+  font-weight: 600;
+  color:       var(--fu-text);
+}
+
+.fu-dz-sub {
+  margin:     0;
+  font-size:  11px;
+  color:      var(--fu-sub);
+  text-align: center;
+}
+
+.fu-hint {
+  font-size: 10px;
+  opacity:   0.7;
+  margin-top: 2px;
+}
+
+.fu-dropzone-sm {
+  padding:        8px 16px;
+  border-radius:  10px;
+  min-height:     36px;
+  display:        flex;
+  align-items:    center;
+  justify-content:center;
+  font-size:      12px;
+  color:          var(--fu-sub);
+}
+
+/* ── Expanded panel ────────────────────────────────────────── */
+.fu-panel {
+  background:    var(--fu-bg);
+  border:        1.5px solid var(--fu-border);
+  border-radius: 14px;
+  padding:       14px 14px 12px;
+  display:       flex;
+  flex-direction:column;
+  gap:           10px;
+  box-shadow:    var(--fu-shadow);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  animation:     fu-slide-in 0.2s ease;
+}
+
+@keyframes fu-slide-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0);   }
+}
+
+/* ── Panel header ──────────────────────────────────────────── */
+.fu-panel-header {
+  display:         flex;
+  align-items:     center;
+  justify-content: space-between;
+}
+
+.fu-panel-title {
+  font-size:   13px;
+  font-weight: 600;
+  color:       var(--fu-text);
+}
+
+/* ── File list ─────────────────────────────────────────────── */
+.fu-file-list {
+  display:        flex;
+  flex-direction: column;
+  gap:            6px;
+  max-height:     200px;
+  overflow-y:     auto;
+  scrollbar-width: thin;
+}
+
+.fu-file-list::-webkit-scrollbar       { width: 4px; }
+.fu-file-list::-webkit-scrollbar-thumb { background: var(--fu-border); border-radius: 4px; }
+
+.fu-file-row {
+  display:     flex;
+  align-items: center;
+  gap:         10px;
+  background:  var(--fu-row-bg);
+  border-radius: 9px;
+  padding:     7px 10px;
+  transition:  background 0.15s;
+}
+
+.fu-file-row:hover { background: var(--fu-row-hov); }
+
+.fu-thumb {
+  width:        36px;
+  height:       36px;
+  border-radius:6px;
+  object-fit:   cover;
+  flex-shrink:  0;
+  border:       1px solid var(--fu-border);
+}
+
+.fu-file-icon {
+  font-size:   22px;
+  flex-shrink: 0;
+  width:       36px;
+  text-align:  center;
+}
+
+.fu-file-meta {
+  flex:           1;
+  min-width:      0;
+  display:        flex;
+  flex-direction: column;
+  gap:            2px;
+}
+
+.fu-file-name {
+  font-size:     12.5px;
+  font-weight:   500;
+  color:         var(--fu-text);
+  white-space:   nowrap;
+  overflow:      hidden;
+  text-overflow: ellipsis;
+}
+
+.fu-file-size {
+  font-size: 10.5px;
+  color:     var(--fu-sub);
+}
+
+.fu-remove-btn {
+  background:    none;
+  border:        none;
+  cursor:        pointer;
+  color:         var(--fu-sub);
+  font-size:     14px;
+  padding:       2px 5px;
+  border-radius: 5px;
+  transition:    color 0.15s, background 0.15s;
+  flex-shrink:   0;
+}
+
+.fu-remove-btn:hover {
+  color:      var(--fu-err);
+  background: rgba(255, 126, 179, 0.12);
+}
+
+/* ── Question input ────────────────────────────────────────── */
+.fu-question-row {
+  display:     flex;
+  align-items: center;
+  gap:         8px;
+  background:  var(--fu-input-bg);
+  border:      1.5px solid var(--fu-border);
+  border-radius: 10px;
+  padding:     0 10px;
+  transition:  border-color 0.2s;
+}
+
+.fu-question-row:focus-within {
+  border-color: var(--fu-accent);
+}
+
+.fu-q-icon {
+  color:       var(--fu-accent);
+  opacity:     0.7;
+  flex-shrink: 0;
+}
+
+.fu-question-input {
+  flex:       1;
+  background: transparent;
+  border:     none;
+  outline:    none;
+  color:      var(--fu-input-text);
+  font-size:  12.5px;
+  padding:    9px 0;
+  font-family:inherit;
+}
+
+.fu-question-input::placeholder { color: var(--fu-sub); }
+
+/* ── Errors ────────────────────────────────────────────────── */
+.fu-errors {
+  background:    rgba(255, 80, 80, 0.08);
+  border:        1px solid rgba(255, 80, 80, 0.3);
+  border-radius: 9px;
+  padding:       8px 12px;
+}
+
+.fu-error-msg {
+  margin:      0;
+  font-size:   11.5px;
+  color:       var(--fu-err);
+  line-height: 1.6;
+}
+
+/* ── Buttons ───────────────────────────────────────────────── */
+.fu-btn {
+  display:     inline-flex;
+  align-items: center;
+  gap:         6px;
+  border:      none;
+  border-radius:9px;
+  cursor:      pointer;
+  font-family: inherit;
+  font-size:   12.5px;
+  font-weight: 500;
+  transition:  all 0.18s ease;
+  padding:     6px 12px;
+}
+
+.fu-btn-ghost {
+  background:  var(--fu-row-bg);
+  color:       var(--fu-sub);
+  border:      1px solid var(--fu-border);
+}
+
+.fu-btn-ghost:hover {
+  background:   var(--fu-row-hov);
+  color:        var(--fu-text);
+  border-color: var(--fu-border-hov);
+}
+
+.fu-btn-send {
+  width:          100%;
+  justify-content:center;
+  padding:        10px 16px;
+  font-size:      13.5px;
+  font-weight:    600;
+  background:     var(--fu-send-bg);
+  color:          var(--fu-send-text);
+  border-radius:  10px;
+  box-shadow:     0 4px 16px rgba(108, 99, 255, 0.30);
+  letter-spacing: 0.3px;
+}
+
+.fu-btn-send:hover:not(:disabled) {
+  filter:     brightness(1.12);
+  transform:  translateY(-1px);
+  box-shadow: 0 6px 20px rgba(108, 99, 255, 0.45);
+}
+
+.fu-btn-send:disabled {
+  opacity: 0.45;
+  cursor:  not-allowed;
+  transform: none;
+}

@@ -1,0 +1,301 @@
+/* ===============================
+   Chat Sidebar (FULL HEIGHT)
+=============================== */
+.chat-sidebar {
+  width: 220px;              /* balanced width like ChatGPT */
+  height: 100vh;             /* FULL SCREEN HEIGHT */
+  background: rgba(32, 33, 35, 0.95);
+  backdrop-filter: blur(10px);
+
+  display: flex;
+  flex-direction: column;
+  padding: 14px;
+  gap: 16px;
+
+  border-right: 1px solid rgba(68, 70, 84, 0.6);
+  box-sizing: border-box;
+}
+
+/* ===============================
+   New Chat Button
+=============================== */
+.new-chat-btn {
+  background: linear-gradient(135deg, #10a37f, #0e8f6b);
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+
+  transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
+}
+
+.new-chat-btn:hover {
+  transform: scale(1.04);
+  box-shadow: 0 4px 15px rgba(16, 163, 127, 0.5);
+}
+
+/* ===============================
+   Conversation List
+=============================== */
+.conversation-list {
+  flex: 1;
+  overflow-y: auto;
+  margin-top: 6px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ===============================
+   Conversation Item
+=============================== */
+.conversation-item {
+  background: rgba(42, 43, 50, 0.9);
+  padding: 10px 12px;
+  border-radius: 8px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  cursor: pointer;
+  font-size: 14px;
+  color: #e5e5e5;
+
+  transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
+}
+
+.conversation-item:hover {
+  background: rgba(59, 60, 69, 0.95);
+  transform: translateX(4px);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+}
+
+/* Selected chat */
+.conversation-item.selected {
+  background: linear-gradient(135deg, #343541, #2b2c35);
+  box-shadow: inset 0 0 0 1px rgba(16,163,127,0.5);
+}
+
+/* ===============================
+   Delete Icon
+=============================== */
+.delete-icon {
+  color: #ff5c6c;
+  cursor: pointer;
+  font-size: 14px;
+  margin-left: 8px;
+
+  transition: color 0.3s, transform 0.2s;
+}
+
+.delete-icon:hover {
+  color: #ff1a2e;
+  transform: scale(1.2);
+}
+
+/* ===============================
+   Scrollbar (Slim)
+=============================== */
+.conversation-list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.conversation-list::-webkit-scrollbar-thumb {
+  background-color: #10a37f;
+  border-radius: 2px;
+}
+/* ===============================
+   Sidebar Logo
+=============================== */
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 8px 6px;
+  margin-bottom: 10px;
+
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+
+  border-bottom: 1px solid rgba(68, 70, 84, 0.6);
+}
+.sidebar-logo img {
+  width: 34px;
+  height: 34px;
+  border-radius: 6px;
+  object-fit: cover;
+
+}
+
+.sidebar-logo span {
+  background: linear-gradient(135deg, #10a37f, #5fd3b3);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+ 
+ /* ===============================
+   Sidebar Logout
+=============================== */
+
+
+.logout-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #ff4d4f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  background-color: #ff7875;
+}
+
+/* ===== POPUP OVERLAY ===== */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ===== POPUP BOX ===== */
+.popup-box {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  width: 300px;
+  text-align: center;
+  box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
+}
+
+/* ===== POPUP TEXT ===== */
+.popup-box h3 {
+  margin-bottom: 10px;
+}
+
+/* ===== BUTTON AREA ===== */
+.popup-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* CANCEL BUTTON */
+.cancel-btn {
+  padding: 8px 16px;
+  border: none;
+  background: #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* LOGOUT BUTTON */
+.confirm-btn {
+  padding: 8px 16px;
+  border: none;
+  background: red;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.user-info {
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+.user-info .role {
+  font-size: 12px;
+  color: gray;
+}
+.role-badge.admin {
+  background: #ff4d4f;
+}
+
+.role-badge.user {
+  background: #4caf50;
+}
+/* USER ROLE SECTION */
+.user-role {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+/* ROLE BADGE CIRCLE */
+.role-badge {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;          /* makes circle */
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+
+  box-shadow: 0 3px 8px rgba(0,0,0,0.25);
+
+  /* Mobile: hide sidebar by default */
+@media (max-width: 640px) {
+  .chat-sidebar {
+    position: fixed;
+    top: 0;
+    left: -100%;        /* hidden off screen */
+    height: 100%;
+    width: 75%;
+    z-index: 100;
+    transition: left 0.3s ease;
+  }
+
+  /* When open class added, slide in */
+  .chat-sidebar.open {
+    left: 0;
+  }
+
+  /* Hamburger button visible on mobile */
+  .hamburger-btn {
+    display: flex;
+  }
+
+  /* Sidebar close button visible on mobile */
+  .sidebar-close-btn {
+    display: flex;
+  }
+}
+
+/* Desktop: hamburger and close button hidden */
+@media (min-width: 641px) {
+  .hamburger-btn {
+    display: none;
+  }
+
+  .sidebar-close-btn {
+    display: none;
+  }
+
+  .sidebar-overlay {
+    display: none;
+  }
+}
+}

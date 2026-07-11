@@ -1,0 +1,85 @@
+in backen 
+
+   nul.yml--- to add intent and examples  
+   (Qestion)
+   test
+   ------>
+       domain.yml(ans)
+	   
+	stories--> are the training example of rhe convarsaction flow 
+	
+	
+	create inside the backend ---app.py----
+	
+after paste the app.py code 
+ 
+ 
+ pip install mysql-connector-python____________
+ 
+ sql command ----
+ 
+ CREATE DATABASE chattybot; *
+ USE chattybot  *
+ CREATE TABLE conversations (
+    id INT NOT NULL AUTO_INCREMENT,
+    user_id VARCHAR(255) NOT NULL,
+    conversation_id VARCHAR(255) NOT NULL,
+    timestamp TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+    UNIQUE KEY conversation_id (conversation_id)
+);
+
+
+CREATE TABLE messages (
+    id INT NOT NULL AUTO_INCREMENT,
+    conversation_id VARCHAR(255) NOT NULL,
+    user_message TEXT,
+    bot_response TEXT,
+4    timestamp TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+
+    PRIMARY KEY (id),
+    KEY conversation_id (conversation_id),
+
+    CONSTRAINT messages_ibfk_1
+        FOREIGN KEY (conversation_id)
+        REFERENCES conversations (conversation_id)
+        ON DELETE CASCADE
+);
+
+
+create frontend or client
+----------->
+open :  https://tailwindcss.com/docs/installation/using-vite
+
+paste this : npm create vite@latest my-project
+cd my-project
+npm install tailwindcss @tailwindcss/vite
+
+npm i
+
+npm i react-icons
+
+
+backend :  cd backend
+rasa_env\Scripts\activate
+
+if flask is not installed :
+python -m pip install flask flask-cors requests mysql-connector-python
+ 
+ 
+ rasa_env\Scripts\activate
+pip install mysql-connector-python
+
+rasa train
+rasa shell
+
+
+____________________________________________________________________________
+
+next process fetch data from another db
+
+CREATE DATABASE company_db;
+
+USE company_db;
+
+

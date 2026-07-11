@@ -1,0 +1,276 @@
+version: "3.1"
+
+rules:
+
+# ==============================
+# SMALL TALK
+# ==============================
+- rule: Greet
+  steps:
+    - intent: greet
+    - action: utter_greet
+
+- rule: Goodbye
+  steps:
+    - intent: goodbye
+    - action: utter_goodbye
+
+- rule: Thank
+  steps:
+    - intent: thank
+    - action: utter_thank
+
+- rule: Bot challenge
+  steps:
+    - intent: bot_challenge
+    - action: utter_bot_challenge
+
+- rule: Affirm
+  steps:
+    - intent: affirm
+    - action: utter_affirm
+
+- rule: Deny
+  steps:
+    - intent: deny
+    - action: utter_deny
+
+# ==============================
+# EMPLOYEE QUERIES
+# ==============================
+- rule: Ask phone
+  steps:
+    - intent: ask_phone
+    - action: action_person_query
+
+- rule: Ask email
+  steps:
+    - intent: ask_email
+    - action: action_person_query
+
+- rule: Ask role
+  steps:
+    - intent: ask_role
+    - action: action_person_query
+
+- rule: Ask department
+  steps:
+    - intent: ask_department
+    - action: action_person_query
+
+- rule: Ask experience
+  steps:
+    - intent: ask_experience
+    - action: action_person_query
+
+- rule: Ask location
+  steps:
+    - intent: ask_location
+    - action: action_person_query
+
+- rule: Ask joining date
+  steps:
+    - intent: ask_joining_date
+    - action: action_person_query
+
+- rule: Ask project
+  steps:
+    - intent: ask_project
+    - action: action_person_query
+
+- rule: Ask manager
+  steps:
+    - intent: ask_manager
+    - action: action_person_query
+
+- rule: Ask skills
+  steps:
+    - intent: ask_skills
+    - action: action_person_query
+
+- rule: Ask salary
+  steps:
+    - intent: ask_salary
+    - action: action_person_query
+
+# ==============================
+# SMART EMPLOYEE QUERIES
+# ==============================
+- rule: List all employees
+  steps:
+    - intent: list_employees
+    - action: action_smart_employee_query
+
+- rule: List last employees
+  steps:
+    - intent: list_last_employees
+    - action: action_smart_employee_query
+
+- rule: List employee range
+  steps:
+    - intent: list_employee_range
+    - action: action_smart_employee_query
+
+- rule: List employee by index
+  steps:
+    - intent: list_employee_index
+    - action: action_smart_employee_query
+
+- rule: Employees by location
+  steps:
+    - intent: ask_location_employees
+    - action: action_smart_employee_query
+
+- rule: Same details
+  steps:
+    - intent: same_details
+    - action: action_smart_employee_query
+
+- rule: Count employees
+  steps:
+    - intent: count_employees
+    - action: action_count_employees
+
+- rule: Employee profile
+  steps:
+    - intent: ask_profile
+    - action: action_get_profile
+
+# ==============================
+# LEAVE
+# ==============================
+- rule: Leave status
+  steps:
+    - intent: ask_leave_status
+    - action: action_leave_status
+
+- rule: Apply leave
+  steps:
+    - intent: apply_leave
+    - action: leave_form
+    - active_loop: leave_form
+
+- rule: Submit leave form
+  condition:
+    - active_loop: leave_form
+  steps:
+    - action: leave_form
+    - active_loop: null
+    - action: action_apply_leave
+
+- rule: Approve leave
+  steps:
+    - intent: approve_leave
+    - action: action_approve_leave
+
+- rule: Reject leave
+  steps:
+    - intent: reject_leave
+    - action: action_reject_leave
+
+- rule: Who on leave today
+  steps:
+    - intent: ask_on_leave_today
+    - action: action_on_leave_today
+
+# ==============================
+# ATTENDANCE
+# ==============================
+- rule: Attendance
+  steps:
+    - intent: ask_attendance
+    - action: action_attendance
+
+- rule: Absent today
+  steps:
+    - intent: ask_absent_today
+    - action: action_absent_today
+
+# ==============================
+# PAYROLL
+# ==============================
+- rule: Payroll
+  steps:
+    - intent: ask_payroll
+    - action: action_get_payroll
+
+# ==============================
+# TASKS
+# ==============================
+- rule: Tasks
+  steps:
+    - intent: ask_tasks
+    - action: action_tasks
+
+- rule: Update task
+  steps:
+    - intent: update_task
+    - action: action_update_task
+
+# ← NEW: Assign task (HR + Manager only)
+- rule: Assign task
+  steps:
+    - intent: assign_task
+    - action: assign_task_form
+    - active_loop: assign_task_form
+
+# ← NEW: Submit assign task form
+- rule: Submit assign task form
+  condition:
+    - active_loop: assign_task_form
+  steps:
+    - action: assign_task_form
+    - active_loop: null
+    - action: action_assign_task
+
+# ==============================
+# PROJECTS
+# ==============================
+- rule: Projects
+  steps:
+    - intent: ask_projects
+    - action: action_projects
+
+# ==============================
+# ANNOUNCEMENTS
+# ==============================
+- rule: Announcements
+  steps:
+    - intent: ask_announcements
+    - action: action_announcements
+
+# ==============================
+# DATABASE INFO
+# ==============================
+- rule: DB rows
+  steps:
+    - intent: ask_db_rows
+    - action: action_db_info
+
+- rule: DB columns
+  steps:
+    - intent: ask_db_columns
+    - action: action_db_info
+
+- rule: DB column names
+  steps:
+    - intent: ask_db_column_names
+    - action: action_db_info
+
+- rule: DB avg salary
+  steps:
+    - intent: ask_db_avg_salary
+    - action: action_db_info
+
+- rule: DB total salary
+  steps:
+    - intent: ask_db_total_salary
+    - action: action_db_info
+
+# ==============================
+# FALLBACK
+# ==============================
+- rule: Fallback
+  steps:
+    - intent: nlu_fallback
+    - action: action_default_fallback

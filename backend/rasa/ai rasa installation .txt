@@ -1,0 +1,40 @@
+mkdir chattybot
+
+cd chattybot
+
+mkdir backend
+
+cd backend
+
+py -3.10 -m venv rasa_env
+
+rasa_env\Scripts\activate
+  
+pip install rasa  
+
+pip install flask flask-cors requests                   
+
+rasa init
+
+rasa run --enable-api --cors "*"
+
+http://localhost:5005/webhooks/rest/webhook
+npm install react-router-dom
+
+rasa run actions
+
+python generate_hash.py
+
+
+C:\Users\Nithesh Byju\AppData\Local\Programs\Python\Python310\
+INSERT INTO users (username, password, role)
+VALUES ('hulk', 'avanger', 'user');
+
+DELETE FROM users
+WHERE username = 'hulk'; 
+
+
+pip install mysql-connector-python
+
+
+npm install react-markdown

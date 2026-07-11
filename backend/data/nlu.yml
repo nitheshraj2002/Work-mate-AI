@@ -1,0 +1,415 @@
+version: "3.1"
+
+nlu:
+
+# ======================
+# SMALL TALK
+# ======================
+- intent: greet
+  examples: |
+    - hi
+    - hello
+    - hey
+    - good morning
+    - good evening
+    - hi there
+    - hello bot
+    - hey bot
+
+- intent: goodbye
+  examples: |
+    - bye
+    - goodbye
+    - see you
+    - talk later
+    - see you later
+    - take care
+
+- intent: thank
+  examples: |
+    - thanks
+    - thank you
+    - thanks a lot
+    - thank you so much
+    - that was helpful
+    - thanks bot
+
+- intent: bot_challenge
+  examples: |
+    - who are you
+    - what is your name
+    - are you a bot
+    - what can you do
+    - tell me about yourself
+
+- intent: affirm
+  examples: |
+    - yes
+    - yep
+    - sure
+    - okay
+    - correct
+    - yes please
+
+- intent: deny
+  examples: |
+    - no
+    - nope
+    - not really
+    - no thanks
+    - cancel
+
+# ======================
+# EMPLOYEE QUERIES
+# ======================
+- intent: ask_phone
+  examples: |
+    - [Nithesh](person_name) phone number
+    - phone of [Gopi](person_name)
+    - contact number of [Dhixi](person_name)
+    - [Abirami](person_name) mobile number
+    - what is [Naveen](person_name) phone
+    - my phone number
+    - give me [Raj](person_name) contact
+    - [Babu](person_name) phone
+
+- intent: ask_email
+  examples: |
+    - [Nithesh](person_name) email
+    - email id of [Gopi](person_name)
+    - [Dhixi](person_name) email address
+    - my email
+    - [Abirami](person_name) mail id
+    - what is [Naveen](person_name) email
+    - [Raj](person_name) email id
+
+- intent: ask_role
+  examples: |
+    - [Nithesh](person_name) role
+    - what is [Gopi](person_name) role
+    - job title of [Dhixi](person_name)
+    - position of [Abirami](person_name)
+    - my role
+    - what is my designation
+    - [Naveen](person_name) designation
+
+- intent: ask_department
+  examples: |
+    - [Nithesh](person_name) department
+    - which department does [Gopi](person_name) work in
+    - [Dhixi](person_name) team
+    - my department
+    - which team am I in
+    - [Abirami](person_name) division
+    - department of [Naveen](person_name)
+
+- intent: ask_experience
+  examples: |
+    - [Nithesh](person_name) experience
+    - how much experience does [Gopi](person_name) have
+    - [Dhixi](person_name) years of experience
+    - my experience
+    - experience of [Abirami](person_name) and [Naveen](person_name)
+    - tell [Raj](person_name) and [Babu](person_name) experience
+
+- intent: ask_location
+  examples: |
+    - [Nithesh](person_name) location
+    - where does [Gopi](person_name) work
+    - [Dhixi](person_name) office location
+    - my location
+    - where do I work
+    - [Abirami](person_name) work location
+
+- intent: ask_joining_date
+  examples: |
+    - [Nithesh](person_name) joining date
+    - when did [Gopi](person_name) join
+    - [Dhixi](person_name) start date
+    - my joining date
+    - when did I join
+    - date of joining of [Abirami](person_name)
+
+- intent: ask_manager
+  examples: |
+    - who is [Nithesh](person_name) manager
+    - [Gopi](person_name) manager
+    - who manages [Dhixi](person_name)
+    - my manager
+    - who is my reporting manager
+    - [Abirami](person_name) team lead
+
+- intent: ask_project
+  examples: |
+    - [Nithesh](person_name) project
+    - which project is [Gopi](person_name) working on
+    - my project
+    - what project am I on
+    - [Dhixi](person_name) current project
+    - project of [Abirami](person_name)
+
+- intent: ask_skills
+  examples: |
+    - [Gopi](person_name) skills
+    - what are [Nithesh](person_name) skills
+    - skills of [Dhixi](person_name)
+    - my skills
+    - [Gopi](person_name) and [Nithesh](person_name) skills
+    - technical skills of [Abirami](person_name)
+    - [Naveen](person_name) skill set
+
+- intent: ask_salary
+  examples: |
+    - [Nithesh](person_name) salary
+    - what is [Gopi](person_name) salary
+    - salary of [Dhixi](person_name)
+    - my salary
+    - how much does [Abirami](person_name) earn
+    - [Gopi](person_name) and [Nithesh](person_name) salary
+
+# ======================
+# LIST AND COUNT EMPLOYEES
+# ======================
+- intent: list_employees
+  examples: |
+    - list employees
+    - show all employees
+    - employees list
+    - give me all employee names
+    - display all staff
+    - who are the employees
+
+- intent: list_last_employees
+  examples: |
+    - show last 3 employees
+    - last 5 employees
+    - list last 4 employees
+    - last 2 employees
+
+- intent: list_employee_range
+  examples: |
+    - employees from 2 to 5
+    - show employees 3 to 7
+    - list employees 1 to 4
+    - employees 2-5
+
+- intent: list_employee_index
+  examples: |
+    - show first employee
+    - second employee details
+    - 3rd employee info
+    - show 4th employee
+
+- intent: ask_location_employees
+  examples: |
+    - employees in [Madurai](location)
+    - show employees working at [Chennai](location)
+    - list all employees in [Bangalore](location)
+    - who works in [Coimbatore](location)
+    - staff in [Trichy](location)
+
+- intent: same_details
+  examples: |
+    - show details of [Nithesh](person_name) and [Gopi](person_name)
+    - compare [Dhixi](person_name) and [Abirami](person_name)
+    - give info of [Nithesh](person_name) and [Gopi](person_name)
+    - [Naveen](person_name) and [Babu](person_name) details
+
+- intent: count_employees
+  examples: |
+    - how many employees
+    - total employees
+    - employee count
+    - number of employees
+    - how many staff members
+
+- intent: ask_profile
+  examples: |
+    - show my profile
+    - [Nithesh](person_name) profile
+    - my full profile
+    - profile of [Gopi](person_name)
+    - show all profiles
+    - employee profiles
+
+# ======================
+# LEAVE
+# ======================
+- intent: ask_leave_status
+  examples: |
+    - my leave status
+    - show my leave
+    - leave history
+    - show all leave requests
+    - [Nithesh](person_name) leave status
+    - pending leaves
+    - approved leaves
+    - who is on leave
+
+- intent: apply_leave
+  examples: |
+    - apply for leave
+    - I want to take leave
+    - apply sick leave
+    - request casual leave
+    - apply annual leave
+    - I need leave
+
+- intent: approve_leave
+  examples: |
+    - approve [Nithesh](person_name) leave
+    - approve leave for [Gopi](person_name)
+    - [Dhixi](person_name) leave approved
+    - accept [Abirami](person_name) leave request
+
+- intent: reject_leave
+  examples: |
+    - reject [Nithesh](person_name) leave
+    - reject leave for [Gopi](person_name)
+    - [Dhixi](person_name) leave rejected
+    - deny [Abirami](person_name) leave
+
+- intent: ask_on_leave_today
+  examples: |
+    - who is on leave today
+    - who is absent on leave today
+    - employees on leave today
+    - today leave list
+    - who took leave today
+
+# ======================
+# ATTENDANCE
+# ======================
+- intent: ask_attendance
+  examples: |
+    - my attendance
+    - show attendance
+    - [Gopi](person_name) attendance
+    - today attendance
+    - attendance report
+    - check in time
+    - show my check in
+
+- intent: ask_absent_today
+  examples: |
+    - who is absent today
+    - absent employees today
+    - today absentees
+    - who did not come today
+    - who is not present today
+
+# ======================
+# PAYROLL
+# ======================
+- intent: ask_payroll
+  examples: |
+    - show payroll
+    - my payslip
+    - payroll details
+    - show salary details
+    - [Nithesh](person_name) payroll
+    - all payroll records
+    - salary breakdown
+
+# ======================
+# TASKS
+# ======================
+- intent: ask_tasks
+  examples: |
+    - my tasks
+    - show tasks
+    - [Nithesh](person_name) tasks
+    - pending tasks
+    - all tasks
+    - what are my tasks
+    - task list
+    - show assigned tasks
+
+- intent: update_task
+  examples: |
+    - mark task as completed
+    - task done
+    - task finished
+    - mark as in progress
+    - task completed
+    - update task status
+    - task 3 completed
+    - mark task 2 as done
+
+# ← NEW: assign task intent
+- intent: assign_task
+  examples: |
+    - assign task to [Nithesh](person_name)
+    - give task to [Gopi](person_name)
+    - assign work to [Dhixi](person_name)
+    - create task for [Abirami](person_name)
+    - new task for [Naveen](person_name)
+    - assign [Babu](person_name) a task
+    - assign task
+    - create new task
+    - give new task
+    - add task for [Raj](person_name)
+    - I want to assign a task
+    - assign a work to [Nithesh](person_name)
+
+# ======================
+# PROJECTS
+# ======================
+- intent: ask_projects
+  examples: |
+    - show projects
+    - all projects
+    - project list
+    - project status
+    - my projects
+    - projects in progress
+    - show project tracker
+
+# ======================
+# ANNOUNCEMENTS
+# ======================
+- intent: ask_announcements
+  examples: |
+    - show announcements
+    - latest announcements
+    - company announcements
+    - any news
+    - what are the announcements
+    - notice board
+
+# ======================
+# DATABASE INFO (HR only)
+# ======================
+- intent: ask_db_rows
+  examples: |
+    - how many rows in database
+    - total rows
+    - number of records
+    - row count
+
+- intent: ask_db_columns
+  examples: |
+    - how many columns
+    - total columns
+    - number of columns
+
+- intent: ask_db_column_names
+  examples: |
+    - column names
+    - show columns
+    - what are the fields
+    - list all fields
+
+- intent: ask_db_avg_salary
+  examples: |
+    - average salary
+    - avg salary
+    - mean salary
+    - what is the average pay
+
+- intent: ask_db_total_salary
+  examples: |
+    - total salary
+    - sum of salaries
+    - total payroll
+    - sum of all salaries

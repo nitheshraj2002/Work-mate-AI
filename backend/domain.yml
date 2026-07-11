@@ -1,0 +1,306 @@
+version: "3.1"
+
+# =====================================================
+# INTENTS
+# =====================================================
+intents:
+  - greet
+  - goodbye
+  - thank
+  - bot_challenge
+  - affirm
+  - deny
+  - nlu_fallback
+  - ask_phone
+  - ask_email
+  - ask_role
+  - ask_department
+  - ask_experience
+  - ask_location
+  - ask_joining_date
+  - ask_project
+  - ask_manager
+  - ask_skills
+  - ask_salary
+  - ask_profile
+  - list_employees
+  - list_last_employees
+  - list_employee_range
+  - list_employee_index
+  - ask_location_employees
+  - count_employees
+  - same_details
+  - ask_leave_status
+  - apply_leave
+  - approve_leave
+  - reject_leave
+  - ask_on_leave_today
+  - ask_attendance
+  - ask_absent_today
+  - ask_payroll
+  - ask_tasks
+  - update_task
+  - assign_task
+  - ask_projects
+  - ask_announcements
+  - ask_db_rows
+  - ask_db_columns
+  - ask_db_column_names
+  - ask_db_avg_salary
+  - ask_db_total_salary
+
+# =====================================================
+# ENTITIES
+# =====================================================
+entities:
+  - person_name
+  - location
+  - number
+  - field
+
+# =====================================================
+# SLOTS
+# =====================================================
+slots:
+  person_name:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: person_name
+
+  location:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: location
+
+  number:
+    type: float
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: number
+
+  field:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: field
+
+  # ROLE SLOTS — filled by ActionSessionStart from Flask metadata
+  user_role:
+    type: categorical
+    values:
+      - hr
+      - manager
+      - developer
+    influence_conversation: true
+    mappings:
+      - type: custom
+
+  logged_in_user:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: custom
+
+  last_employee:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: custom
+
+  # LEAVE FORM SLOTS
+  leave_type:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: leave_form
+            requested_slot: leave_type
+
+  from_date:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: leave_form
+            requested_slot: from_date
+
+  to_date:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: leave_form
+            requested_slot: to_date
+
+  reason:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: leave_form
+            requested_slot: reason
+
+  # ASSIGN TASK FORM SLOTS
+  assign_to:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: assign_task_form
+            requested_slot: assign_to
+
+  task_desc:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: assign_task_form
+            requested_slot: task_desc
+
+  priority:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: assign_task_form
+            requested_slot: priority
+
+  deadline:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: assign_task_form
+            requested_slot: deadline
+
+# =====================================================
+# FORMS
+# =====================================================
+forms:
+  leave_form:
+    required_slots:
+      - leave_type
+      - from_date
+      - to_date
+      - reason
+
+  # NEW: assign task form
+  assign_task_form:
+    required_slots:
+      - assign_to
+      - task_desc
+      - priority
+      - deadline
+
+# =====================================================
+# RESPONSES
+# =====================================================
+responses:
+  utter_greet:
+    - text: "👋 Hello! Ask me about employees, leave, attendance, tasks or announcements."
+    - text: "Hi there! 😊 What would you like to know today?"
+
+  utter_goodbye:
+    - text: "👋 Goodbye! Have a great day!"
+    - text: "See you! Take care 😊"
+
+  utter_thank:
+    - text: "😊 You're welcome! Anything else?"
+    - text: "Happy to help! Let me know if you need more."
+
+  utter_affirm:
+    - text: "✅ Sure!"
+
+  utter_deny:
+    - text: "No problem 👍"
+
+  utter_bot_challenge:
+    - text: "🤖 I'm your HR Bot — role-based access to rasadb + chattybot tasks!"
+
+  utter_fallback:
+    - text: |
+        😕 I couldn't understand that. Try:
+        • "Nithesh salary" | "Gopi department"
+        • "Show all employees" | "My profile"
+        • "My leave" | "Apply leave"
+        • "Today attendance" | "Who is absent today"
+        • "My tasks" | "Assign task to Nithesh"
+        • "Show projects" | "Announcements"
+
+  # LEAVE FORM RESPONSES
+  utter_ask_leave_type:
+    - text: "What type of leave? (Sick Leave / Casual Leave / Annual Leave / Maternity Leave / Paternity Leave)"
+
+  utter_ask_from_date:
+    - text: "From which date? (format: YYYY-MM-DD)"
+
+  utter_ask_to_date:
+    - text: "To which date? (format: YYYY-MM-DD)"
+
+  utter_ask_reason:
+    - text: "What is the reason for your leave?"
+
+  # ASSIGN TASK FORM RESPONSES
+  utter_ask_assign_to:
+    - text: "Who do you want to assign the task to? (enter username e.g. nithesh_dev)"
+
+  utter_ask_task_desc:
+    - text: "What is the task description?"
+
+  utter_ask_priority:
+    - text: "What is the priority? (high / medium / low)"
+
+  utter_ask_deadline:
+    - text: "What is the deadline? (format: YYYY-MM-DD)"
+
+  utter_ask_person_name:
+    - text: "Please provide the employee name."
+
+# =====================================================
+# ACTIONS
+# =====================================================
+actions:
+  - action_session_start
+  - action_person_query
+  - action_smart_employee_query
+  - action_count_employees
+  - action_get_profile
+  - action_db_info
+  - action_list_employees
+  - action_leave_status
+  - action_apply_leave
+  - action_approve_leave
+  - action_reject_leave
+  - action_on_leave_today
+  - action_attendance
+  - action_absent_today
+  - action_get_payroll
+  - action_tasks
+  - action_update_task
+  - action_assign_task
+  - action_projects
+  - action_announcements
+  - action_default_fallback
+  - validate_leave_form
+  - validate_assign_task_form
+
+# =====================================================
+# SESSION CONFIG 
+# =====================================================
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

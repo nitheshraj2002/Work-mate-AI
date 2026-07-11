@@ -1,0 +1,135 @@
+/* ===============================
+   MODERN CHAT HEADER (CSS ONLY)
+=============================== */
+
+.chat-header {
+  height: 0px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 2px;
+  background: linear-gradient(135deg, #1e1f22, #343541);
+  backdrop-filter: blur(12px);
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+/* Title area */
+.chat-header .header-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+
+
+/* Header buttons */
+.chat-header .header-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.chat-header .header-btn {
+  background: rgba(16, 163, 127, 0.85);
+  color: #ffffff;
+  border: none;
+  padding: 7px 14px;
+  border-radius: 18px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.chat-header .header-btn:hover {
+  background: #10a37f;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(16, 163, 127, 0.4);
+}
+
+/* Online indicator (auto) */
+.chat-header::after {
+  content: "Online";
+  position: absolute;
+  right: 90px;
+  font-size: 12px;
+  color: #2ecc71;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.chat-header::after::before {
+  content: "ofline ";
+  width: 8px;
+  height: 8px;
+  background: #cc2e33;
+  border-radius: 50%;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(46, 204, 113, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0); }
+}
+
+
+/* ===============================
+   CHAT HEADER
+=============================== */
+.chat-header {
+  height: 48px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+  padding: 0 20px;
+  background: linear-gradient(135deg, #1e1f22, #343541);
+  backdrop-filter: blur(12px);
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+/* ===============================
+   TITLE + LOGO
+=============================== */
+.header-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: 0.3px;
+}
+
+/* ===============================
+   LOGO SIZE (CORRECT)
+=============================== */
+.chat-logo {
+  width: 20px;          /* perfect for 48px header */
+  height: 20px;
+  object-fit: contain;
+  border-radius: 6px;   /* soft modern look */
+  flex-shrink: 0;
+
+  /* subtle highlight */
+  box-shadow: 0 0 6px rgba(16, 163, 127, 0.6);
+}
